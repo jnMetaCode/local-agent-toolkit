@@ -1,0 +1,8 @@
+# The three tools are independent git repos / npm packages — tracked there, not here.
+engram/
+skillet/
+tracelet/
+
+node_modules/
+*.log
+.DS_Store
