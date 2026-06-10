@@ -1,5 +1,7 @@
 # Release runbook — from zero to launched
 
+English | [简体中文](./RUNBOOK.zh-CN.md)
+
 Everything below the first section is already done and verified. The first
 section is the only human-credentials part.
 

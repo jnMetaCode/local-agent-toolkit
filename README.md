@@ -7,6 +7,8 @@ skills, and eyes — without shipping your data to anyone's cloud.**
 
 `npx @jnmetacode/engram` · `npx @jnmetacode/skillet` · `npx @jnmetacode/tracelet`
 
+English | [简体中文](./README.zh-CN.md)
+
 </div>
 
 ---
