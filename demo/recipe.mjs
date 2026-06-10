@@ -7,13 +7,22 @@
 //
 // Everything runs on your machine. Zero external dependencies (Node 18+ fetch).
 //   node demo/recipe.mjs
-import { spawn } from 'node:child_process';
+import { spawn, spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import { mkdtempSync, rmSync } from 'node:fs';
+import { existsSync, mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
+
+// The three tools live in sibling repos (gitignored here). If any is missing —
+// e.g. you cloned only this umbrella repo — shallow-clone it next to demo/.
+for (const tool of ['engram', 'skillet', 'tracelet']) {
+  if (existsSync(join(ROOT, tool, 'src/cli.js'))) continue;
+  console.log(`  fetching ${tool} (one-time shallow clone)…`);
+  const r = spawnSync('git', ['clone', '--depth', '1', `https://github.com/jnMetaCode/${tool}.git`, join(ROOT, tool)], { stdio: 'inherit' });
+  if (r.status !== 0) { console.error(`could not clone ${tool} — clone it manually next to demo/`); process.exit(1); }
+}
 const node = process.execPath;
 const proj = mkdtempSync(join(tmpdir(), 'agentkit-demo-'));
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));

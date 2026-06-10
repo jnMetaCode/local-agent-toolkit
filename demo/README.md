@@ -13,6 +13,9 @@ Everything runs on your machine. Zero external dependencies (Node 18+).
 node demo/recipe.mjs
 ```
 
+(If you cloned only this umbrella repo, the script shallow-clones the three tool
+repos next to `demo/` on first run — still nothing to install.)
+
 Expected output:
 
 ```
@@ -40,8 +43,8 @@ Desktop / Claude Code, etc.) can use them directly — no glue code:
 ```json
 {
   "mcpServers": {
-    "engram":  { "command": "npx", "args": ["-y", "engram",  "mcp"] },
-    "skillet": { "command": "npx", "args": ["-y", "skillet", "mcp"] }
+    "engram":  { "command": "npx", "args": ["-y", "@jnmetacode/engram",  "mcp"] },
+    "skillet": { "command": "npx", "args": ["-y", "@jnmetacode/skillet", "mcp"] }
   }
 }
 ```

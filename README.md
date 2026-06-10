@@ -5,7 +5,7 @@
 **Three small, zero-dependency, `npx`-first tools that give your agent memory,
 skills, and eyes — without shipping your data to anyone's cloud.**
 
-`npx engram` · `npx skillet` · `npx tracelet`
+`npx @jnmetacode/engram` · `npx @jnmetacode/skillet` · `npx @jnmetacode/tracelet`
 
 </div>
 
@@ -35,7 +35,7 @@ built-in BM25 engine works offline; optional local Ollama adds semantic recall.
 `engram watch` keeps it live as you edit; an **MCP server** lets any agent use your
 memory as a tool.
 ```bash
-npx engram watch ~/notes   # live memory; then: npx engram recall "what did I decide about pricing"
+npx @jnmetacode/engram watch ~/notes   # live memory; then: npx @jnmetacode/engram recall "what did I decide about pricing"
 ```
 
 ### 🍳 [skillet](./skillet) — a package manager for AI agent skills
@@ -44,7 +44,7 @@ Find, install, version and share `SKILL.md` skills from a **Git-backed registry*
 pin the commit SHA. Includes a static **gallery** and an **MCP server** so an agent
 can find and install skills for itself.
 ```bash
-npx skillet search pdf && npx skillet add pdf
+npx @jnmetacode/skillet search pdf && npx @jnmetacode/skillet add pdf
 ```
 
 ### 🔭 [tracelet](./tracelet) — local DevTools for AI agents
@@ -53,7 +53,7 @@ execution tree stream in **live** — LLM calls, tool calls, prompts, tokens,
 latency, errors. Ingests both OTLP **protobuf** (the exporter default) and JSON.
 No account, no Docker, no Python.
 ```bash
-npx tracelet
+npx @jnmetacode/tracelet
 ```
 
 ## How they fit together
