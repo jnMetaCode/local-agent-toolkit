@@ -68,6 +68,22 @@ npx @jnmetacode/tracelet
 Build an agent, give it **memory** (engram), teach it **skills** (skillet), and
 **debug** what it does (tracelet) — all locally.
 
+## Install as a Claude Code plugin (one command)
+
+This repo doubles as a plugin marketplace. Inside Claude Code:
+
+```
+/plugin marketplace add jnMetaCode/local-agent-toolkit
+/plugin install local-agent-toolkit@local-agent-toolkit
+```
+
+That gives the agent the **engram** MCP tools (`engram_recall` /
+`engram_remember` — durable local memory) and the **skillet** MCP tools
+(`skillet_search` / `skillet_install` — find and add skills for itself), plus
+two bundled skills that teach it *when* to use them (`engram-memory`,
+`tracelet-instrument`). Run `npx @jnmetacode/tracelet` in a terminal to watch
+what it does. Everything stays on your machine.
+
 ## Shared principles
 
 - **Local-first & private** — your data never leaves your machine.

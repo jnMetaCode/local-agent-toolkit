@@ -1,0 +1,19 @@
+{
+  "name": "local-agent-toolkit",
+  "owner": {
+    "name": "jnMetaCode"
+  },
+  "metadata": {
+    "description": "Local-first, MCP-native toolkit for building AI agents: memory (engram), skills (skillet), tracing (tracelet).",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "local-agent-toolkit",
+      "source": "./",
+      "description": "engram + skillet MCP servers and toolkit skills (local memory, skill management, agent tracing) — everything runs on your machine.",
+      "category": "productivity",
+      "tags": ["local-first", "memory", "skills", "tracing", "mcp"]
+    }
+  ]
+}
