@@ -2,8 +2,16 @@
 
 English | [简体中文](./RUNBOOK.zh-CN.md)
 
-Everything below the first section is already done and verified. The first
-section is the only human-credentials part.
+> **STATUS (2026-06-11): PUBLISHED.** All three packages are live on npm
+> (published from this machine's logged-in `jnmetacode` account, v0.1.x tagged
+> with GitHub releases) and verified with a clean cache:
+> [@jnmetacode/engram](https://www.npmjs.com/package/@jnmetacode/engram) ·
+> [@jnmetacode/skillet](https://www.npmjs.com/package/@jnmetacode/skillet) ·
+> [@jnmetacode/tracelet](https://www.npmjs.com/package/@jnmetacode/tracelet).
+> Section 1 has ONE remaining optional item: add the `NPM_TOKEN` secret so
+> *future* tag pushes publish automatically from CI (the workflow currently
+> skips publish gracefully when the secret is absent). Next up: **section 3 —
+> launch.**
 
 ## 1. The 30 minutes only you can do (P0)
 

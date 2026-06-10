@@ -2,7 +2,15 @@
 
 [English](./RUNBOOK.md) | 简体中文
 
-下面除第 1 节外的所有内容都已完成并经过验证。**只有第 1 节需要你本人的账号操作。**
+> **状态（2026-06-11）：已发布上线。** 三个包已全部发布到 npm（用本机已登录的
+> `jnmetacode` 账号发布，v0.1.x 已打 tag 并创建 GitHub release），且已用干净
+> 缓存验证可用：
+> [@jnmetacode/engram](https://www.npmjs.com/package/@jnmetacode/engram) ·
+> [@jnmetacode/skillet](https://www.npmjs.com/package/@jnmetacode/skillet) ·
+> [@jnmetacode/tracelet](https://www.npmjs.com/package/@jnmetacode/tracelet)。
+> 第 1 节只剩一项**可选**事项：配置 `NPM_TOKEN` secret，让*以后*推 tag 时 CI
+> 自动发布（当前没有该 secret 时工作流会优雅跳过发布步骤，不会报错）。
+> 下一步：**第 3 节——正式对外发布（Show HN）。**
 
 ## 1. 只有你能做的 30 分钟（P0）
 
