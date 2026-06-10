@@ -1,5 +1,7 @@
 # The recipe — all three tools in one agent run
 
+[English](./README.md) | [简体中文](./README.zh-CN.md)
+
 This is the proof that the toolkit is one stack, not three toys. One script runs a
 single agent interaction that:
 
