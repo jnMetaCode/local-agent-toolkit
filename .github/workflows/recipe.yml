@@ -1,0 +1,28 @@
+name: End-to-end recipe
+
+# Integration smoke test for the whole toolkit: the recipe shallow-clones
+# engram + skillet + tracelet at main and drives one agent run through all
+# three. Runs on push and weekly, so a breaking change in any tool repo
+# surfaces here within a week even if this repo didn't change.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: '0 6 * * 1' # Mondays 06:00 UTC
+  workflow_dispatch:
+
+jobs:
+  recipe:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        node: [18, 22]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - run: node demo/recipe.mjs
+        timeout-minutes: 5
