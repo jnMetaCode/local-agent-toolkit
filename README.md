@@ -28,7 +28,7 @@ node demo/recipe.mjs   # one agent run: a skill (skillet) + memory (engram) + tr
 
 ## The toolkit
 
-### 🧠 [engram](./engram) — a local, private memory layer
+### 🧠 [engram](https://github.com/jnMetaCode/engram) — a local, private memory layer
 Index your notes and files, then recall anything with **citations** and **temporal
 reasoning** (recency-aware ranking, `--since week`) — 100% on your machine. A
 built-in BM25 engine works offline; optional local Ollama adds semantic recall.
@@ -38,7 +38,7 @@ memory as a tool.
 npx @jnmetacode/engram watch ~/notes   # live memory; then: npx @jnmetacode/engram recall "what did I decide about pricing"
 ```
 
-### 🍳 [skillet](./skillet) — a package manager for AI agent skills
+### 🍳 [skillet](https://github.com/jnMetaCode/skillet) — a package manager for AI agent skills
 Find, install, version and share `SKILL.md` skills from a **Git-backed registry**
 (a JSON file in a repo — no server). Installs copy the skill into your project and
 pin the commit SHA. Includes a static **gallery** and an **MCP server** so an agent
@@ -47,7 +47,7 @@ can find and install skills for itself.
 npx @jnmetacode/skillet search pdf && npx @jnmetacode/skillet add pdf
 ```
 
-### 🔭 [tracelet](./tracelet) — local DevTools for AI agents
+### 🔭 [tracelet](https://github.com/jnMetaCode/tracelet) — local DevTools for AI agents
 Point any OpenTelemetry exporter at `localhost:4318` and watch your agent's
 execution tree stream in **live** — LLM calls, tool calls, prompts, tokens,
 latency, errors. Ingests both OTLP **protobuf** (the exporter default) and JSON.
@@ -98,13 +98,13 @@ what it does. Everything stays on your machine.
 
 ## Repos
 
-Each tool lives in its own folder and is published independently:
+Each tool lives in its own repo and is published independently:
 
-| Tool | What it does | Folder |
+| Tool | What it does | Repo |
 | --- | --- | --- |
-| 🧠 engram | local private memory — watch mode + MCP server | [`./engram`](./engram) |
-| 🍳 skillet | agent-skills package manager — gallery + MCP server | [`./skillet`](./skillet) |
-| 🔭 tracelet | local DevTools for agent traces — OTLP protobuf+JSON | [`./tracelet`](./tracelet) |
+| 🧠 engram | local private memory — watch mode + MCP server | [jnMetaCode/engram](https://github.com/jnMetaCode/engram) |
+| 🍳 skillet | agent-skills package manager — gallery + MCP server | [jnMetaCode/skillet](https://github.com/jnMetaCode/skillet) |
+| 🔭 tracelet | local DevTools for agent traces — OTLP protobuf+JSON | [jnMetaCode/tracelet](https://github.com/jnMetaCode/tracelet) |
 | ▶️ demo | one-command recipe proving all three together | [`./demo`](./demo) |
 
 > Status: early MVPs, all functional and tested. See each repo's README and its
