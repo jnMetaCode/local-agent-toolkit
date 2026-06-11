@@ -30,11 +30,11 @@ node demo/recipe.mjs   # 一次 agent 运行：装技能(skillet) + 用记忆(en
 ## 三件套
 
 ### 🧠 [engram](https://github.com/jnMetaCode/engram) —— 本地私有记忆层
-索引你的笔记和文件，然后用自然语言召回任何内容——**带出处引用**（文件:行号
-+ 日期）和**时间感知**（越新越靠前、支持 `--since week` 时间过滤），100% 在
-本机完成。内置 BM25 引擎离线可用；可选接入本地 Ollama 获得语义召回。
-`engram watch` 让记忆随你的编辑实时更新；内置 **MCP server**，任何 agent 都
-能把你的记忆当工具调用。
+索引你的笔记、文件、PDF 和 **EPUB**，然后用自然语言召回任何内容——**带出处
+引用**（文件:行号 + 日期）和**时间感知**（越新越靠前、支持 `--since week`），
+100% 在本机完成。内置 BM25 引擎离线可用；可选本地 Ollama 加语义召回。召回会
+**自我进化**——用 `engram reinforce` 确认答案，相似查询就把它排得更高。
+`engram watch` 实时更新；**MCP server** 让 agent 能召回、写入*并强化*记忆。
 ```bash
 npx @jnmetacode/engram watch ~/notes   # 实时记忆；然后: npx @jnmetacode/engram recall "我们对定价做了什么决定"
 ```
@@ -42,17 +42,17 @@ npx @jnmetacode/engram watch ~/notes   # 实时记忆；然后: npx @jnmetacode/
 ### 🍳 [skillet](https://github.com/jnMetaCode/skillet) —— AI agent 技能包管理器
 从 **Git 仓库即注册表**（一个 JSON 文件，无需服务器）中查找、安装、版本管理
 和分享 `SKILL.md` 技能。安装时把技能复制进你的项目并**锁定 commit SHA**，
-团队可用 `skillet install` 精确复现（相当于技能界的 `npm ci`）。自带在线
-**gallery** 和 **MCP server**——agent 可以自己给自己找技能、装技能。
+团队可用 `skillet install` 精确复现（技能界的 `npm ci`）。**已收录 27 个验证
+过的技能**；在线 **gallery** 和 **MCP server** 让 agent 自己找技能、装技能。
 ```bash
 npx @jnmetacode/skillet search pdf && npx @jnmetacode/skillet add pdf
 ```
 
 ### 🔭 [tracelet](https://github.com/jnMetaCode/tracelet) —— agent 的本地 DevTools
 把任何 OpenTelemetry exporter 指向 `localhost:4318`，就能**实时**看到 agent
-的执行树——每次 LLM 调用、工具调用、提示词、token 数、延迟、报错。同时支持
-OTLP **protobuf**（exporter 默认格式）和 JSON。不用注册、不用 Docker、不用
-Python。
+的执行树——每次 LLM 调用、工具调用、提示词、token 数、延迟、报错，以及**按
+模型估算的成本**。同时支持 OTLP **protobuf** 和 JSON；可选 `--persist` 让历史
+跨重启保留。不用注册、不用 Docker、不用 Python。
 ```bash
 npx @jnmetacode/tracelet
 ```
@@ -108,5 +108,5 @@ npx @jnmetacode/tracelet
 | 🔭 tracelet | agent 追踪的本地 DevTools —— OTLP protobuf+JSON | [jnMetaCode/tracelet](https://github.com/jnMetaCode/tracelet) |
 | ▶️ demo | 一条命令串起三件套的端到端示例 | [`./demo`](./demo) |
 
-> 状态：早期 MVP，全部可用且有测试。各仓库的 README 和 `docs/LAUNCH.md`
+> 状态：持续迭代中（engram 0.3.x、skillet 0.1.x、tracelet 0.2.x），全部可用且有测试。各仓库的 README 和 `docs/LAUNCH.md`
 > 里有后续计划。发布操作手册见 [RUNBOOK.zh-CN.md](./RUNBOOK.zh-CN.md)。
