@@ -3,7 +3,7 @@
 [English](./RUNBOOK.md) | 简体中文
 
 > **状态（2026-06-11）：已发布上线。** 三个包已全部发布到 npm（用本机已登录的
-> `jnmetacode` 账号发布，v0.1.x 已打 tag 并创建 GitHub release），且已用干净
+> `jnmetacode` 账号发布，每个版本均已打 tag 并创建 GitHub release），且已用干净
 > 缓存验证可用：
 > [@jnmetacode/engram](https://www.npmjs.com/package/@jnmetacode/engram) ·
 > [@jnmetacode/skillet](https://www.npmjs.com/package/@jnmetacode/skillet) ·

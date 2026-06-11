@@ -3,7 +3,7 @@
 English | [简体中文](./RUNBOOK.zh-CN.md)
 
 > **STATUS (2026-06-11): PUBLISHED.** All three packages are live on npm
-> (published from this machine's logged-in `jnmetacode` account, v0.1.x tagged
+> (published from this machine's logged-in `jnmetacode` account, every release tagged
 > with GitHub releases) and verified with a clean cache:
 > [@jnmetacode/engram](https://www.npmjs.com/package/@jnmetacode/engram) ·
 > [@jnmetacode/skillet](https://www.npmjs.com/package/@jnmetacode/skillet) ·
