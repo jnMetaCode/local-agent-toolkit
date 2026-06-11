@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 // End-to-end recipe: one agent run that uses all three tools, locally.
 //
-//   1. skillet installs a skill into the project   (capability)
-//   2. engram remembers a decision, then recalls it (memory)
-//   3. the run is traced into tracelet via OTLP      (observability)
+//   1. skillet installs a skill into the project       (capability)
+//   2. engram remembers a decision, then recalls it     (memory)
+//   3. the confirmed answer is reinforced               (self-evolution)
+//   4. the run is traced into tracelet via OTLP, w/cost (observability)
 //
 // Everything runs on your machine. Zero external dependencies (Node 18+ fetch).
 //   node demo/recipe.mjs
@@ -84,14 +85,23 @@ async function main() {
 
   // 2) engram — remember a decision, then recall it
   const fact = 'On 2026-09-15 we shipped v1 with usage-based pricing and a free tier.';
-  await fetch(`${ENGRAM}/remember`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ text: fact, source: 'recipe' }) });
-  const rec = await (await fetch(`${ENGRAM}/recall`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ query: 'when did we ship and what pricing' }) })).json();
-  const hit = rec.results?.[0];
+  await fetch(`${ENGRAM}/remember`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ text: fact, source: 'decisions' }) });
+  const recallScore = async () => {
+    const r = await (await fetch(`${ENGRAM}/recall`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ query: 'when did we ship and what pricing' }) })).json();
+    return r.results?.[0];
+  };
+  const hit = await recallScore();
   console.log(`${c.g('2) engram ')}  remembered a decision, recalled it: ${c.dim(hit ? `"${hit.snippet}" (${hit.date || 'now'})` : '(none)')}`);
 
-  // 3) tracelet — emit an OTLP trace of this "agent run"
+  // 3) self-evolution — confirm the answer was right; recall gets sharper
+  await fetch(`${ENGRAM}/reinforce`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ query: 'when did we ship and what pricing', source: 'decisions' }) });
+  const hit2 = await recallScore();
+  console.log(`${c.g('3) evolve ')}  reinforced the confirmed answer: score ${c.dim(`${hit?.score} → ${hit2?.score}`)} (memory improves with use)`);
+
+  // 4) tracelet — emit an OTLP trace of this "agent run"
   const ns = (ms) => String(Date.now() * 1e6 + ms * 1e6);
   const sv = (v) => ({ stringValue: v });
+  const iv = (v) => ({ intValue: v });
   const span = (id, parent, name, kind, off, dur, attrs) => ({
     traceId: 'a1b2c3d4e5f60718a1b2c3d4e5f60718', spanId: id, parentSpanId: parent || '',
     name, kind: 1, startTimeUnixNano: ns(off), endTimeUnixNano: ns(off + dur),
@@ -101,13 +111,14 @@ async function main() {
     scopeSpans: [{ scope: { name: 'recipe' }, spans: [
       span('1111111111111111', '', 'agent.run', 1, 0, 900, { 'openinference.span.kind': sv('AGENT'), 'input.value': sv('remember our launch decision') }),
       span('2222222222222222', '1111111111111111', 'engram.recall', 1, 120, 80, { 'openinference.span.kind': sv('TOOL'), 'tool.name': sv('engram_recall'), 'output.value': sv(hit?.snippet || '') }),
-      span('3333333333333333', '1111111111111111', 'ai.generateText', 1, 250, 500, { 'gen_ai.system': sv('anthropic'), 'gen_ai.request.model': sv('claude-sonnet-4.5'), 'ai.response.text': sv('Noted: shipped 2026-09-15, usage-based pricing.') }),
+      span('3333333333333333', '1111111111111111', 'ai.generateText', 1, 250, 500, { 'gen_ai.system': sv('anthropic'), 'gen_ai.request.model': sv('claude-sonnet-4-6'), 'gen_ai.usage.input_tokens': iv(812), 'gen_ai.usage.output_tokens': iv(240), 'ai.response.text': sv('Noted: shipped 2026-09-15, usage-based pricing.') }),
     ] }] }] };
   await fetch(TRACE_INGEST, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(otlp) });
   await sleep(150);
   const traces = await (await fetch(`${TRACE_UI}/api/traces`)).json();
   const t = traces[0];
-  console.log(`${c.g('3) tracelet')}  traced the run: ${c.dim(`${t?.spanCount} spans · ${t?.llmCalls} LLM · ${t?.toolCalls} tool · ${t?.tokens} tok`)}`);
+  const cost = t?.costUsd != null ? ` · ~$${t.costUsd.toFixed(4)}` : '';
+  console.log(`${c.g('4) tracelet')}  traced the run: ${c.dim(`${t?.spanCount} spans · ${t?.llmCalls} LLM · ${t?.toolCalls} tool · ${t?.tokens} tok${cost}`)}`);
 
   console.log(c.b('\n✓ One agent run: it had a skill, used memory, and was fully observable — all local.'));
   console.log(c.dim(`  Open ${TRACE_UI} to see the execution tree (the servers stop when this script exits).\n`));

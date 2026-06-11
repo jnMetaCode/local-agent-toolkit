@@ -6,7 +6,8 @@
 
 1. **获得技能** —— `skillet` 把 `note-taker` 技能装进项目
 2. **使用记忆** —— `engram` 记住一个决定，然后召回它
-3. **全程可观测** —— 整个运行通过 OpenTelemetry 追踪进 `tracelet`
+3. **自我进化** —— 确认过的答案被强化，召回越用越准
+4. **全程可观测** —— 运行追踪进 `tracelet`，带成本估算
 
 一切都在你的机器上运行。零外部依赖（Node 18+）。
 
@@ -26,7 +27,8 @@ node demo/recipe.mjs
 
 1) skillet   ✓ installed note-taker @1.0.0 → .claude/skills/note-taker
 2) engram    remembered a decision, recalled it: "On 2026-09-15 we shipped v1 …" (2026-09-15)
-3) tracelet  traced the run: 3 spans · 1 LLM · 1 tool
+3) evolve    reinforced the confirmed answer: score 1 → 1.13 (memory improves with use)
+4) tracelet  traced the run: 3 spans · 1 LLM · 1 tool · 1052 tok · ~$0.0060
 
 ✓ One agent run: it had a skill, used memory, and was fully observable — all local.
   Open http://127.0.0.1:4321 to see the execution tree.

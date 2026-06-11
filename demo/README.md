@@ -7,7 +7,8 @@ single agent interaction that:
 
 1. **gets a skill** — `skillet` installs a `note-taker` skill into the project,
 2. **uses memory** — `engram` remembers a decision and recalls it,
-3. **is observable** — the run is traced into `tracelet` via OpenTelemetry.
+3. **self-evolves** — the confirmed answer is reinforced, so recall sharpens,
+4. **is observable** — the run is traced into `tracelet`, with a cost estimate.
 
 Everything runs on your machine. Zero external dependencies (Node 18+).
 
@@ -27,7 +28,8 @@ Expected output:
 
 1) skillet   ✓ installed note-taker @1.0.0 → .claude/skills/note-taker
 2) engram    remembered a decision, recalled it: "On 2026-09-15 we shipped v1 …" (2026-09-15)
-3) tracelet  traced the run: 3 spans · 1 LLM · 1 tool
+3) evolve    reinforced the confirmed answer: score 1 → 1.13 (memory improves with use)
+4) tracelet  traced the run: 3 spans · 1 LLM · 1 tool · 1052 tok · ~$0.0060
 
 ✓ One agent run: it had a skill, used memory, and was fully observable — all local.
   Open http://127.0.0.1:4321 to see the execution tree.
