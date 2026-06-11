@@ -1,7 +1,7 @@
 {
   "name": "local-agent-toolkit",
   "displayName": "Local Agent Toolkit",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Local-first memory, skills and tracing for your agent: engram (recall/remember your notes via MCP), skillet (search/install agent skills via MCP), plus skills that teach the agent to use them — nothing leaves your machine.",
   "author": {
     "name": "jnMetaCode",
@@ -10,15 +10,30 @@
   "homepage": "https://github.com/jnMetaCode/local-agent-toolkit",
   "repository": "https://github.com/jnMetaCode/local-agent-toolkit",
   "license": "MIT",
-  "keywords": ["local-first", "memory", "skills", "tracing", "mcp", "agents"],
+  "keywords": [
+    "local-first",
+    "memory",
+    "skills",
+    "tracing",
+    "mcp",
+    "agents"
+  ],
   "mcpServers": {
     "engram": {
       "command": "npx",
-      "args": ["-y", "@jnmetacode/engram", "mcp"]
+      "args": [
+        "-y",
+        "@jnmetacode/engram",
+        "mcp"
+      ]
     },
     "skillet": {
       "command": "npx",
-      "args": ["-y", "@jnmetacode/skillet", "mcp"]
+      "args": [
+        "-y",
+        "@jnmetacode/skillet",
+        "mcp"
+      ]
     }
   }
 }

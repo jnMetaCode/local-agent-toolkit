@@ -1,7 +1,7 @@
 ---
 name: engram-memory
 description: Give the agent durable, local memory with engram — recall past decisions before answering, and persist new decisions, preferences and facts as they happen. Use when work spans sessions or the user says "remember".
-version: 1.0.0
+version: 1.1.0
 license: MIT
 keywords: [memory, recall, engram, local-first, decisions, mcp]
 homepage: https://github.com/jnMetaCode/engram
@@ -57,6 +57,20 @@ Rules for good memories:
 2. **Date it.** Lead with an absolute date — engram's ranking is time-aware.
 3. **Include the why**, not just the what; the why is what future-you needs.
 4. Don't store what the repo already records (code, git history, docs).
+
+## REINFORCE what proved right (self-improving recall)
+
+When a recalled memory turned out to be the correct answer — the fix worked,
+the user confirmed — say so, and similar future queries will rank that source
+higher:
+
+```bash
+npx @jnmetacode/engram reinforce "staging deploy fails" deploy-notes
+```
+
+(MCP: the `engram_reinforce` tool, `{query, source}`.) Only reinforce
+*verified* answers; reinforcing guesses trains the memory to be confidently
+wrong. For the full improvement loop, see the `self-evolve` skill.
 
 ## Verify it stuck
 
