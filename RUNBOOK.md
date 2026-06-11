@@ -53,7 +53,8 @@ English | [简体中文](./RUNBOOK.zh-CN.md)
 Order: **engram → skillet → tracelet** (strongest differentiator first; each
 launch cross-links the umbrella repo, which lifts the other two).
 
-Per launch, the playbook lives in `<tool>/docs/LAUNCH.md` — finalized Show HN
+Hooks/titles/comeback lines: [`LAUNCH-HOOKS.md`](./LAUNCH-HOOKS.md). Per
+launch, the playbook lives in `<tool>/docs/LAUNCH.md` — finalized Show HN
 title + body, channel list, and reply guidance. The short version:
 
 - Post Tue/Wed ~8am PT. Reply to **every** comment for the first 3 hours.

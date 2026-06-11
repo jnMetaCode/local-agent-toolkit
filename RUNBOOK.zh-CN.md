@@ -51,7 +51,7 @@
 顺序：**engram → skillet → tracelet**（差异化最强的先发；每次发布都通过
 umbrella 仓库互相引流，带动另外两个）。
 
-每个工具的完整发布攻略在 `<工具>/docs/LAUNCH.md` 里——包括定稿的
+标题/钩子/回怼话术见 [`LAUNCH-HOOKS.md`](./LAUNCH-HOOKS.md)。每个工具的完整发布攻略在 `<工具>/docs/LAUNCH.md` 里——包括定稿的
 Show HN 标题和正文、渠道清单、回帖策略。要点：
 
 - 周二/周三早上 8 点（太平洋时间）发帖。**前 3 小时回复每一条评论。**
