@@ -42,8 +42,8 @@ npx @jnmetacode/engram watch ~/notes   # 实时记忆；然后: npx @jnmetacode/
 ### 🍳 [skillet](https://github.com/jnMetaCode/skillet) —— AI agent 技能包管理器
 从 **Git 仓库即注册表**（一个 JSON 文件，无需服务器）中查找、安装、版本管理
 和分享 `SKILL.md` 技能。安装时把技能复制进你的项目并**锁定 commit SHA**，
-团队可用 `skillet install` 精确复现（技能界的 `npm ci`）。**已收录 27 个验证
-过的技能**；在线 **gallery** 和 **MCP server** 让 agent 自己找技能、装技能。
+团队可用 `skillet install` 精确复现（技能界的 `npm ci`）。**已收录 30 个验证过的
+技能**（含 superpowers-zh 中文精选）；在线 **gallery** 和 **MCP server** 让 agent 自己找技能、装技能。
 ```bash
 npx @jnmetacode/skillet search pdf && npx @jnmetacode/skillet add pdf
 ```

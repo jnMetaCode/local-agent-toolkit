@@ -45,7 +45,7 @@ npx @jnmetacode/engram watch ~/notes   # live memory; then: npx @jnmetacode/engr
 ### 🍳 [skillet](https://github.com/jnMetaCode/skillet) — a package manager for AI agent skills
 Find, install, version and share `SKILL.md` skills from a **Git-backed registry**
 (a JSON file in a repo — no server). Installs copy the skill into your project and
-pin the commit SHA. **27 verified skills seeded**; a static **gallery** and an
+pin the commit SHA. **30 verified skills seeded** (incl. curated Chinese skills from superpowers-zh); a static **gallery** and an
 **MCP server** let an agent find and install skills for itself.
 ```bash
 npx @jnmetacode/skillet search pdf && npx @jnmetacode/skillet add pdf
